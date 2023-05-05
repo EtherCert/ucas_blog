@@ -130,7 +130,7 @@
                                     <span class="menu-text">Dashboard</span>
                                 </a>
                             </li>
-                            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                            <li  id="posts" class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                 <a href="javascript:;" class="menu-link menu-toggle">
                                     <i class="menu-icon flaticon-web"></i>
                                     <span class="menu-text">Applications</span>
@@ -144,7 +144,7 @@
                                                 <span class="menu-text">Applications</span>
                                             </span>
                                         </li>
-                                        <li class="menu-item" aria-haspopup="true">
+                                        <li id="sub-posts-1" class="menu-item" aria-haspopup="true">
                                             <a href="custom/apps/inbox.html" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-line">
                                                     <span></span>

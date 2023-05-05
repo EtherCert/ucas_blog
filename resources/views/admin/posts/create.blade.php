@@ -9,7 +9,7 @@
                 <h3 class="card-title">إضاقة منشور جديد</h3>
             </div> 
             <!--begin::Form-->
-            <form action="admin/posts/store" class="form" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.posts.store')}}" class="form" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <div class="form-group row">

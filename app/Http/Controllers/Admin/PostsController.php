@@ -12,7 +12,7 @@ use App\Models\Tag;
 class PostsController extends Controller
 {
     public function index(){
-        $posts = Post::simplePaginate(20);
+        $posts = Post::paginate(5);
 
       return view('admin.posts.index', [
         'posts' => $posts
@@ -50,18 +50,16 @@ public function store(Request $request){
    ]);
 
 }
-public function delete($id){
- $post = Post::findOrFail($id);
+public function delete(Post $post){
+ 
  $post->delete();
-
  return redirect()->back()->with([
   'message_flash' => 'تم حذف المنشور بنجاح ..',
   'alter' => 'success'
  ]);
 }
 
-public function edit($id){
-  $post = Post::findOrFail($id);
+public function edit(Post $post){
   $categories = Category::all();
   $tags = Tag::all();
   return view('admin.posts.edit', [
@@ -71,7 +69,7 @@ public function edit($id){
   ]);
 }
 
-public function update(Request $request, $id){
+public function update(Request $request, Post $post){
   $request->validate([
    'title' => 'required|string|max:255',
    'details' => 'required',
@@ -85,7 +83,7 @@ public function update(Request $request, $id){
    $file = $request->file('post_img');
        $data['post_img'] =  $file->store('images', 'public');
   }
-$post = Post::findOrFail($id);
+
   $post->update($data);
   $post->tags()->detach($request->tags_id);
 
