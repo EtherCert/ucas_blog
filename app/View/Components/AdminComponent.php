@@ -7,9 +7,8 @@ use Illuminate\View\Component;
 class AdminComponent extends Component
 {
     public $title ;
-    public function __construct($title)
+    public function __construct()
     {
-      $this->title = $title;
     }
 
     /**

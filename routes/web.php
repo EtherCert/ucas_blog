@@ -30,3 +30,9 @@ Route::prefix('admin/')->as('admin.')->group(function(){
 
 
 Route::get('admin/users', 'Admin\UsersController@index');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
