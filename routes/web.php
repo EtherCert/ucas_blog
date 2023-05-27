@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'Visitor\HomeController@home');
-Route::prefix('admin/')->as('admin.')->group(function(){
+Route::middleware(['auth', 'my.admin'])->prefix('admin/')->as('admin.')->group(function(){
     Route::prefix('posts/')->as('posts.')->group(function(){
     Route::get('', 'Admin\PostsController@index')->name('index');
     Route::get('create', 'Admin\PostsController@create')->name('create');

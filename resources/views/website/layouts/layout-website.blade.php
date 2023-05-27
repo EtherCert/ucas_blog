@@ -1,5 +1,5 @@
 
-<!-- 
+<!--
 <script>
         document.getElementById("posts").className += " menu-item-open menu-item-here";
         document.getElementById("sub-posts-1").className += " menu-item-active";
@@ -15,9 +15,9 @@
     <!--begin::Fonts-->
     <link href='https://fonts.googleapis.com/css?family=Noto Kufi Arabic' rel='stylesheet'>
     <!--end::Fonts-->
-    <!-- Bootstrap CSS --> 
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{asset('website-assets/css/bootstrap.rtl.min.css')}}">
-    <!-- Animate CSS --> 
+    <!-- Animate CSS -->
     <link rel="stylesheet" href="{{asset('website-assets/css/animate.min.css')}}">
     <!-- Meanmenu CSS -->
     <link rel="stylesheet" href="{{asset('website-assets/css/meanmenu.css')}}">
@@ -106,12 +106,12 @@
                 </li>
                 <li class="nav-item">
                   <a href="contact.html" class="nav-link">
-                  المدونات 
+                  المدونات
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="contact.html" class="nav-link">
-                  من نحن 
+                  من نحن
                   </a>
                 </li>
                 <li class="nav-item">
@@ -119,10 +119,27 @@
                   تواصل معنا
                   </a>
                 </li>
+                  @if(!Auth::user())
+                  <li class="nav-item">
+                  <a href="{{route('register')}}" class="nav-link">
+مستخدم جديد                  </a>
+                      @endif
+                </li>
               </ul>
               <div class="others-options d-flex align-items-center">
                 <div class="option-item">
-                  <a href="#" class="default-btn">تسجيل الدخول</a>
+                    @if(Auth::user())
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a  href="route('logout')"
+                                onclick="event.preventDefault();
+                                                this.closest('form').submit();" class="default-btn">
+                                تسجيل الخروج
+                            </a>
+                        </form>
+                    @else
+                        <a href="{{route('login')}}" class="default-btn">تسجيل الدخول</a>
+                    @endif
                 </div>
               </div>
             </div>

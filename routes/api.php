@@ -14,6 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('tags/index', 'Api\ManageApiController@getTags');
+Route::get('get-tag/{id}', 'Api\ManageApiController@getTag');
+Route::delete('delete-tag/{tag}', 'Api\ManageApiController@deleteTag');
+Route::post('store-tag', 'Api\ManageApiController@storeTag')
+            ->middleware('auth:sanctum');
+Route::post('update-tag/{id}', 'Api\ManageApiController@updateTag');
+
+Route::get('posts/index', 'Api\ManageApiController@getPosts');
+Route::post('admin/store', 'Api\AccessTokensController@store');
+Route::delete('admin/delete/{token?}', 'Api\AccessTokensController@destroy')
+    ->middleware('auth:sanctum');
+
+

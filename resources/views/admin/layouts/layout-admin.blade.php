@@ -130,7 +130,7 @@
                                     <span class="menu-text">Dashboard</span>
                                 </a>
                             </li>
-                            <li  id="posts" class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                            <li class="menu-item menu-item-submenu" id="posts" aria-haspopup="true" data-menu-toggle="hover">
                                 <a href="javascript:;" class="menu-link menu-toggle">
                                     <i class="menu-icon flaticon-web"></i>
                                     <span class="menu-text">Applications</span>
@@ -144,7 +144,7 @@
                                                 <span class="menu-text">Applications</span>
                                             </span>
                                         </li>
-                                        <li id="sub-posts-1" class="menu-item" aria-haspopup="true">
+                                        <li class="menu-item" id="sub-posts-1" aria-haspopup="true">
                                             <a href="custom/apps/inbox.html" class="menu-link">
                                                 <i class="menu-bullet menu-bullet-line">
                                                     <span></span>
@@ -213,9 +213,10 @@
                                         <div
                                             class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2">
                                             <span
-                                                class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
+                                                class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">({{Auth::user()->type == 0 ?'مشرف':'ادمن'}})</span>
+
                                             <span
-                                                class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">Sean</span>
+                                                class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">{{Auth::user()->name}}</span>
                                             <span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
                                                 <span class="symbol-label font-size-h5 font-weight-bold">S</span>
                                             </span>
@@ -241,13 +242,15 @@
                                         <!--end::Item-->
                                         <!--begin::Item-->
                                         <li class="navi-item active">
-                                            <a href="#" class="navi-link">
-                                                <span class="symbol symbol-20 mr-3">
-                                                    <img src="{{asset('admin-assets/media/svg/flags/128-spain.svg')}}"
-                                                        alt="" />
-                                                </span>
-                                                <span class="navi-text">Spanish</span>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                            <a  href="route('logout')"
+                                                 onclick="event.preventDefault();
+                                                this.closest('form').submit();" class="navi-link">
+                                                     تسجيل الخروج
                                             </a>
+                                            </form>
+
                                         </li>
                                         <!--end::Item-->
                                     </ul>
@@ -285,7 +288,7 @@
                                 </div>
                             </div>
                             @endif
-                        
+
 							@if(session('message_flash'))
                             <div class="alert alert-custom alert-notice alert-light-{{session('alter')}} fade show mb-5"
                                 role="alert">
