@@ -31,11 +31,11 @@ public function store(Request $request){
     'title' => 'required|string|max:255',
     'details' => 'required',
     'category_id' => 'required|int|exists:categories,id',
-    'post_img' => 'nullable|image',
+    'post_img' => 'nullable',
     'type' => 'in:0,1',
    ]);
    $data = $request->all();
-   $data['user_id'] = 12;
+   $data['user_id'] = 1;
    if($request->hasFile('post_img')){
     $file = $request->file('post_img');
         $data['post_img'] =  $file->store('images', 'public');
@@ -74,11 +74,11 @@ public function update(Request $request, Post $post){
    'title' => 'required|string|max:255',
    'details' => 'required',
    'category_id' => 'required|int|exists:categories,id',
-   'post_img' => 'nullable|image',
+   'post_img' => 'nullable',
    'type' => 'in:0,1',
   ]);
   $data = $request->all();
-  $data['user_id'] = 12;
+  $data['user_id'] = 1;
   if($request->hasFile('post_img')){
    $file = $request->file('post_img');
        $data['post_img'] =  $file->store('images', 'public');

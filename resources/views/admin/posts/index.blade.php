@@ -40,7 +40,8 @@
 									<thead>
 										<tr>
 											<th scope="col">#</th>
-											<th scope="col">العنوان</th>
+											<th width="20%" scope="col">العنوان</th>
+											<th scope="col">الصورة</th>
 											<th scope="col">المنشئ</th>
 											<th scope="col">التصنيف</th>
 											<th scope="col">الحالة</th>	
@@ -52,6 +53,12 @@
 										<tr style="background-color: {{$loop->odd == 1 ? '#e4e6ef':''}} ">
 											<th scope="row">{{$loop->iteration}}</th>
 											<td>{{$post->title}}</td>
+											<td>
+												<a target="_blank" href="{{asset('storage/'.$post->post_img)}}">
+												<img style="width:100px; height:100px;" 
+												src="{{asset('storage/'.$post->post_img)}}" />
+												</a>
+											</td>
 											<!-- <td>{{ Str::limit($post->details, 10) }}</td> -->
 											<td>{{$post->user->name}}</td>
 											<td>{{$post->category->name}}</td>

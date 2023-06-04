@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'Visitor\HomeController@home');
+
 Route::middleware(['auth', 'my.admin'])->prefix('admin/')->as('admin.')->group(function(){
     Route::prefix('posts/')->as('posts.')->group(function(){
     Route::get('', 'Admin\PostsController@index')->name('index');
@@ -26,13 +26,18 @@ Route::middleware(['auth', 'my.admin'])->prefix('admin/')->as('admin.')->group(f
     Route::prefix('tags/')->as('tags.')->group(function(){
     Route::resource('/', 'Admin\TagsController');
     });
+    Route::get('users', 'Admin\UsersController@index');
 });
 
 
-Route::get('admin/users', 'Admin\UsersController@index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/', 'Visitor\HomeController@home');
+Route::get('posts', 'Visitor\PostsController@index')->name('website.posts.index');
+Route::get('posts/{id}', 'Visitor\PostsController@show')->name('website.posts.show');

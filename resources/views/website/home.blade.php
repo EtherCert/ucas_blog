@@ -103,25 +103,25 @@
                   <noscript><img src="{{asset('website-assets/img/class/class-1.jpg')}}" alt="image"></noscript>
                 </a>
               </div>
-              <div class="class-content">
+              <div class="class-content" style="height: 350px;">
                 <div class="price">{{$post->category->name}}</div>
                 <h3>
-                  <a href="#">{{$post->title}}</a>
+                  <a href="{{route('website.posts.show', ['id' => $post->id])}}">{{$post->title}}</a>
                 </h3>
                 <p>{!!Str::limit($post->details, 60)!!}</p>
                 <ul class="class-list">
                   <li>
-                    <span> تاريخ الإنشاء: </span> 
+                    <span> تاريخ الإنشاء: </span>
                     {{explode(' ', $post->created_at)[0]}}
                   </li>
                 </ul>
-                <div class="class-btn">
-                  <a href="#" class="default-btn">التفاصيل</a>
-                </div>
               </div>
             </div>
           </div>
           @endforeach
+        </div>
+        <div class="who-we-are-btn">
+            <a href="{{route('website.posts.index')}}" class="optional-btn">Read More</a>
         </div>
       </div>
       <div class="class-shape">
