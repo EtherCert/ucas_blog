@@ -12,11 +12,16 @@ use App\Models\Tag;
 class PostsController extends Controller
 {
     public function index(){
-        $posts = Post::paginate(5);
+        $title = request()->query('title', '');
 
-      return view('admin.posts.index', [
-        'posts' => $posts
-      ]);
+        $posts = Post::when($title, function($query, $title) {
+                        return $query->where('title', 'LIKE', '%' . $title . '%');
+                    })->orderBy('id', 'desc')->paginate(5);
+
+        return view('admin.posts.index', [
+            'posts' => $posts,
+            'title' => $title,
+        ]);
     }
 public function create(){
   $categories = Category::all();
@@ -51,7 +56,7 @@ public function store(Request $request){
 
 }
 public function delete(Post $post){
- 
+
  $post->delete();
  return redirect()->back()->with([
   'message_flash' => 'تم حذف المنشور بنجاح ..',

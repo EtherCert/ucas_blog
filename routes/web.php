@@ -38,6 +38,6 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
-Route::get('/', 'Visitor\HomeController@home');
+Route::get('/', 'Visitor\HomeController@home')->name('home');
 Route::get('posts', 'Visitor\PostsController@index')->name('website.posts.index');
 Route::get('posts/{id}', 'Visitor\PostsController@show')->name('website.posts.show');

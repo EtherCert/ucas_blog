@@ -1,5 +1,5 @@
 @extends('admin.layouts.layout-admin')
-@section('title', 'posts') 
+@section('title', 'posts')
 @section('content')
 <!--begin::Entry-->
 <div class="d-flex flex-column-fluid">
@@ -27,11 +27,24 @@
 			<div class="col-xl-12">
 				<!--begin::Card-->
 				<div class="card card-custom gutter-b">
-					<div class="card-header">
-						<div class="card-title">
-							<h3 class="card-label">Base Examples</h3>
-						</div>
-					</div>
+					<div class="container">
+                        <form action="{{ route('admin.posts.index') }}" method="get" novalidate="novalidate">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group mt-2">
+                                        <label></label>
+                                        <input placeholder="ابحث بالعنوان أو جزء منه .." value="{{$title}}" class="form-control m-input m-input--square" name="title" type="text" value="">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-danger" style="margin-top: 25px;"><i class="la la-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
 					<div class="card-body">
 						<!--begin::Example-->
 						<div class="example mb-10">
@@ -44,7 +57,7 @@
 											<th scope="col">الصورة</th>
 											<th scope="col">المنشئ</th>
 											<th scope="col">التصنيف</th>
-											<th scope="col">الحالة</th>	
+											<th scope="col">الحالة</th>
 											<th scope="col">العمليات</th>
 										</tr>
 									</thead>
@@ -55,7 +68,7 @@
 											<td>{{$post->title}}</td>
 											<td>
 												<a target="_blank" href="{{asset('storage/'.$post->post_img)}}">
-												<img style="width:100px; height:100px;" 
+												<img style="width:100px; height:100px;"
 												src="{{asset('storage/'.$post->post_img)}}" />
 												</a>
 											</td>
@@ -65,8 +78,8 @@
 											<td>{{$post->type == 0 ? 'draft':'published'}}</td>
 											<td>
 												<form method="post" action="{{route('admin.posts.delete',[$post->id])}}">
-												@csrf  
-												@method('DELETE')   
+												@csrf
+												@method('DELETE')
 											<button type="submit" onClick="return confirm('هل أنت متأكد نم حذف المنشور؟')" class="btn btn-icon btn-danger btn-circle mr-2">
 											<i class="flaticon flaticon-delete"></i>
 											<!--end::Svg Icon-->
@@ -87,11 +100,11 @@
 								{{$posts->links()}}
 						</div>
 						<!--end::Example-->
-						
+
 					</div>
 				</div>
 				<!--end::Card-->
-		
+
 			</div>
 		</div>
 	</div>
@@ -102,5 +115,5 @@
         document.getElementById("posts").className += " menu-item-open menu-item-here";
         document.getElementById("sub-posts-1").className += " menu-item-active";
     </script>
-@endsection 
+@endsection
 

@@ -70,4 +70,16 @@ class User extends Authenticatable
             'id'
         );
     }
+    public function getRedirectRoute()
+    {
+        if($this->type == '1')
+            return route('admin.posts.index');
+       else
+            return '/';
+//        return match((int)$this->type) {
+//            1 => route('admin.posts.index'),
+//            0 => '/',
+//            // ...
+//        };
+    }
 }
